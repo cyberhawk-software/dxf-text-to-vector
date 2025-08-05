@@ -2,9 +2,12 @@
 
 `dxfTextToVector.py` - this script extracts all TEXT and MTEXT from a DXF file and stores them in a GeoJSON file. Each letter as outline vector value.
 
-✅ Reads a DXF file
+✅ Reads a DXF file 
+
 ✅ Extracts all TEXT/MTEXT entities
+
 ✅ Converts them to vector polygon outlines (font-based). Produces real vector outlines, not just text attributes.
+
 ✅ Saves them as a GeoJSON file
 
 ## Usage example
