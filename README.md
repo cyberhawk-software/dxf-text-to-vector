@@ -10,6 +10,9 @@
 
 ✅ Saves them as a GeoJSON file
 
+<img width="835" height="774" alt="Screenshot From 2025-08-05 08-44-27" src="https://github.com/user-attachments/assets/3f5acd87-8277-4824-b69b-0570a5ffd791" />
+
+
 ## Usage example
 
 Install dependencies:
@@ -30,6 +33,8 @@ python dxfTextToVector.py \
 ```
 
 Use `output/text_outlines.geojson` as a source in Mapbox or in `typecannoe` combining with ogr2ogr script geoJson results.
+
+
 
 ```bash
 # Convert the geometry and labels to MBTiles format using Tippecanoe
