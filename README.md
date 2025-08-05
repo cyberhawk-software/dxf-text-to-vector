@@ -10,7 +10,7 @@
 
 ✅ Saves them as a GeoJSON file
 
-<img width="835" height="774" alt="Screenshot From 2025-08-05 08-44-27" src="https://github.com/user-attachments/assets/3f5acd87-8277-4824-b69b-0570a5ffd791" />
+<img width="400" height="350" alt="Screenshot From 2025-08-05 08-44-27" src="https://github.com/user-attachments/assets/3f5acd87-8277-4824-b69b-0570a5ffd791" />
 
 
 ## Usage example
