@@ -1,0 +1,4 @@
+matplotlib
+shapely
+ezdxf
+geojson
