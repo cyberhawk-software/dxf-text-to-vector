@@ -2,3 +2,5 @@ matplotlib
 shapely
 ezdxf
 geojson
+numpy
+pyproj
