@@ -32,7 +32,7 @@ This tool is ideal for preparing CAD text data for use in GIS applications like 
 -- geojson
 -- matplotlib
 
-## Usage example
+## Installation 
 
 Install dependencies:
 
@@ -40,39 +40,64 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
+## Usage 
+
 The script is run from the command line and accepts several arguments to control its behavior.
 
+### Command 
 ```bash
-python dxfTextToVector.py \
-  --input '/path/to/your_file.dxf' \
-  --output '/output/text_outlines.geojson' \
-  --source_crs "EPSG:4326" \
-  --font "/usr/share/fonts/truetype/freefont/FreeMono.ttf" \
-  --exclude_strings "0" "0.0"
+python dxfTextToVector.py --input <path_to_dxf> --output <path_to_geojson> --font <path_to_ttf> [options]
 ```
 
 ### Arguments
---input (Required): Path to the input DXF file.
+**--input** *(Required)*: Path to the input DXF file.
 
---output (Required): Path for the generated output GeoJSON file.
+**--output** *(Required)*: Path for the generated output GeoJSON file.
 
---font (Required): Path to the .ttf font file to use for rendering all text (e.g., 'C:/Windows/Fonts/arial.ttf').
+**--font** *(Required)*: Path to the .ttf font file to use for rendering all text (e.g., 'C:/Windows/Fonts/arial.ttf').
 
---source_crs (Optional): The source Coordinate Reference System of the DXF file (e.g., 'EPSG:27700'). Defaults to 'EPSG:27700'.
+**--source_crs** *(Optional)*: The source Coordinate Reference System of the DXF file (e.g., 'EPSG:27700'). Defaults to 'EPSG:4326'.
 
---exclude_strings (Optional): A space-separated list of strings to exclude from processing. Defaults to ['0', '0.0'].
+**--exclude_strings** *(Optional)*: A space-separated list of strings to exclude from processing. Defaults to ['0', '0.0'].
 
+### Examples
 
-Use `output/text_outlines.geojson` as a source in Mapbox or in `typecannoe` combining with ogr2ogr script geoJson results.
+**Basic Usage (using British National Grid as source CRS)**:
 
+```bash
+python dxfTextToVector.py \
+    --input "my_cad_file.dxf" \
+    --output "output_vectors.geojson" \
+    --font "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf" \
+    --source_crs "EPSG:27700"
+```
+
+**Excluding Additional Strings:**
+
+This command will skip any text entities that are exactly "N/A" or "TEMP", in addition to the defaults.
+
+```bash
+python dxf_condxfTextToVectorverter.py \
+    --input "plans.dxf" \
+    --output "output_vectors.geojson" \
+    --font "C:/Windows/Fonts/verdana.ttf" \
+    --source_crs "EPSG:32610" \
+    --exclude_strings "N/A" "TEMP"
+```
+
+**Generate vector tiles:**
+
+To generate an MBTiles file combining both geometry and label layers, use Tippecanoe. This example demonstrates how to include:
+
+- **Geometry layer** (e.g., generated with ogr2ogr)
+- **Label layer** from output_vectors.geojson
 
 
 ```bash
-# Convert the geometry and labels to MBTiles format using Tippecanoe
 tippecanoe \
-  -o "$OUTPUT_MBtiles" \
-  -L geometry:"$GEOM_GEOJSON" \
-  -L labels:"$LABELS_GEOJSON" \  
+  -o <path_to_output_mbtiles> \
+  -L geometry:"<path_to__geometry_geojson>" \
+  -L labels:"<path_to_labels_geojson>" \  
   --force \
   --drop-densest-as-needed \
   --minimum-zoom=8 \

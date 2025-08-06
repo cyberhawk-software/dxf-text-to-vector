@@ -260,7 +260,7 @@ if __name__ == '__main__':
     parser.add_argument("--input", required=True, help="Input DXF file path.")
     parser.add_argument("--output", required=True, help="Output GeoJSON file path.")
     parser.add_argument("--font", required=True, help="Path to the .ttf font file to use for rendering all text.\n(e.g., 'C:/Windows/Fonts/arial.ttf')")
-    parser.add_argument("--source_crs", default="EPSG:27700", help="Source CRS of the DXF file (e.g., 'EPSG:27700').\nDefaults to 'EPSG:27700'.")
+    parser.add_argument("--source_crs", default="EPSG:4326", help="Source CRS of the DXF file (e.g., 'EPSG:27700').\nDefaults to 'EPSG:4326'.")
     parser.add_argument("--exclude_strings", nargs='*', default=['0', '0.0'], help="A space-separated list of strings to exclude from processing.\n(default: ['0', '0.0'])")
     
     args = parser.parse_args()
